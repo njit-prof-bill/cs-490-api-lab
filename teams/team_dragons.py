@@ -10,9 +10,14 @@ class AnswerRequest(BaseModel):
 
 @router.get("/question")
 def get_question():
-    pass
+    return { "question": "What is your quest?" }
 
+ANSWER="I seek the holy grail"
 
 @router.post("/answer")
 def post_answer(request: AnswerRequest):
-    pass
+    correct = request.answer.strip().lower() == ANSWER.strip().lower()
+    return { 
+        "correct": correct,
+        "message": "yea u do" if correct else "hell nah",
+    }
