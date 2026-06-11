@@ -506,17 +506,3 @@ Do not rename the JSON fields.
 Do not change the route names.
 
 Your API must return valid JSON.
-
-## Why This Matters
-
-In this lab, each team owns a small part of a larger system. Your code will be combined with the work of other teams.
-
-If every team follows the contract, the system works.
-
-If one team breaks the contract, integration becomes painful.
-
-That is the lesson.
-
-Architecture determines where the boundaries exist.
-
-API contracts determine how those boundaries communicate.
