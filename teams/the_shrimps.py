@@ -1,10 +1,11 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-router = APIRouter(prefix="/the_shrimps")
 
-question = "What is your name"
-answer = "The Shrimps"
+router = APIRouter()
+
+QUESTION = "What is your name"
+ANSWER = "The Shrimps"
 
 
 class AnswerRequest(BaseModel):
@@ -13,14 +14,12 @@ class AnswerRequest(BaseModel):
 
 @router.get("/question")
 def get_question():
-    return {
-        "question": question
-    }
+    return {"question": QUESTION}
 
 
 @router.post("/answer")
 def post_answer(request: AnswerRequest):
-    correct = request.answer.strip().lower() == answer.lower()
+    correct = request.answer.strip().lower() == ANSWER.lower()
     return {
         "correct": correct,
         "message": "You are correct!" if correct else "Sorry, that's not correct."
