@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-router = APIRouter()
+router = APIRouter(prefix="/the_shrimps")
 
 question = "What is your name"
 answer = "The Shrimps"
