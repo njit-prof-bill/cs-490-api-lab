@@ -10,19 +10,17 @@ class AnswerRequest(BaseModel):
 
 @router.get("/question")
 def get_question():
-    """
-    Return your assigned question.
-    """
-    pass
+ return{
+        "question": "What is the capital of Assyria?"
+    }
 
-
+ANSWER = "Nineveh"
+    
 @router.post("/answer")
 def post_answer(request: AnswerRequest):
-    """
-    Validate the supplied answer and return:
-    {
-        "correct": bool,
-        "message": str
+    correct = request.answer.strip().lower() == ANSWER.strip().lower()
+
+    return {
+        "correct": correct,
+        "message": "You may pass." if correct else "Into the Gorge of Eternal Peril!",
     }
-    """
-    pass
