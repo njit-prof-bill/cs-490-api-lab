@@ -3,6 +3,9 @@ from pydantic import BaseModel
 
 router = APIRouter()
 
+question = "What is your name"
+answer = "The Shrimps"
+
 
 class AnswerRequest(BaseModel):
     answer: str
@@ -10,9 +13,15 @@ class AnswerRequest(BaseModel):
 
 @router.get("/question")
 def get_question():
-    pass
+    return {
+        "question": question
+    }
 
 
 @router.post("/answer")
 def post_answer(request: AnswerRequest):
-    pass
+    correct = request.answer.strip().lower() == answer.lower()
+    return {
+        "correct": correct,
+        "message": "You are correct!" if correct else "Sorry, that's not correct."
+    }
