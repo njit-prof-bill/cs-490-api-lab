@@ -3,16 +3,20 @@ from pydantic import BaseModel
 
 router = APIRouter()
 
-
 class AnswerRequest(BaseModel):
     answer: str
 
-
 @router.get("/question")
 def get_question():
-    pass
-
+    return {
+        "question": "What is your favourite color?"
+    }
 
 @router.post("/answer")
 def post_answer(request: AnswerRequest):
-    pass
+    correct = request.answer.strip().lower() != "blue"
+
+    return {
+        "correct": correct,
+        "message": "You may pass." if correct else "Into the Gorge of Eternal Peril!",
+    }
